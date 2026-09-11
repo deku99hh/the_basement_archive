@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->string('work_name');
-            $table->text('work_about_text');
+            $table->text('work_about_text')->default('');
             $table->string('poster_path');
 
             $table->foreignId('author_id')

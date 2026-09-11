@@ -1,7 +1,7 @@
 <x-layout>
 
     <x-slot:heading>
-        Events | The Basement
+        Artists | The Basement
     </x-slot:heading>
 
     <x-slot:style>
@@ -337,71 +337,51 @@
                 }
             }
         </style>
-
     </x-slot:style>
+
 
     {{-- <section class="events-hero">
         <div class="events-bar">
             <div class="events-title-wrap">
-                <h1 class="page-title">Community Events</h1>
-                <p class="page-subtitle">Collaborative fan projects, art exhibitions, and themed weeks.</p>
+                <h1 class="page-title">artists</h1>
+                <p class="page-subtitle">artists.</p>
             </div>
             <div class="events-action">
                 <a href="" class="add-event-btn" title="Add New Event">
                     <span class="plus-icon">+</span>
-                    <span class="btn-text">Add Event</span>
+                    <span class="btn-text">Add artest</span>
                 </a>
             </div>
         </div>
     </section> --}}
-
+    
     <section class="events-section">
         <div class="eventsGrid">
+    
+            @forelse ($artists as $artist)
 
-            @forelse ($events as $event)
-
-                <article class="event-card">
-                    <a href="/event/{{ $event->id }}" class="event-link-wrapper">
-                        <div class="event-poster-wrap">
-                            <img loading="lazy" src="{{ asset($event->poster_path) }}" alt="Event Poster"
-                                class="event-poster">
-                            <span
-                                class="event-badge {{ $event->event_status == 'done' ? "past-badge" : ''}}">{{ $event->event_status }}</span>
+                <div class="work">
+                    <a href="/artist/{{ $artist->id }}">
+                        <div class="work-img">
+                            <img class="personalImg" loading="lazy" src="{{ $artist->avatar }}"
+                                alt="Artist Avatar">
+                        </div>
+                        <div class="work-info">
+                            <h2 class="work-title">{{ $artist->artist_name }}</h2>
+                            <p class="work-desc">{{ $artist->artist_about_text }}</p>
                         </div>
                     </a>
-
-                    <div class="event-content">
-                        <span class="event-date">{{ $event->created_at }}</span>
-                        <h2 class="event-title">
-                            <a href="/event/{{ $event->id }}">{{ $event->event_name }}</a>
-                        </h2>
-                        <p class="event-desc">
-                            {{ $event->event_about_text }}
-                        </p>
-
-                        <div class="event-art-preview">
-                            <span class="preview-label">Featured Entries:</span>
-                            <div class="preview-thumbs">
-                                @foreach($event->works()->latest()->take(3)->get() as $index => $work)
-                                    <a href="/work/{{ $work->id }}" title="{{ $work->title }}">
-                                        <img src="{{ asset($work->poster_path) }}" alt="Preview {{ $index + 1 }}">
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <div class="event-footer">
-                            <a href="/event/{{ $event->id }}" class="view-event-link">View All Works &rarr;</a>
-                        </div>
-                    </div>
-                </article>
+                </div>
 
             @empty
-                <h1>no events YET!!</h1>
+                <h1>no artists, YET!!</h1>
             @endforelse
-
-
+    
         </div>
     </section>
 
 </x-layout>
+
+
+
+

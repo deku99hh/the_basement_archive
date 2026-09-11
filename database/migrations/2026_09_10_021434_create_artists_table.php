@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('username')->unique();
             $table->text('artist_about_text');
-            $table->string('avatar');
+            $table->string('avatar')->default('assets/teto.png');
             $table->enum('role', ['admin', 'artist'])
                 ->default('artist');
             $table->string('instagram')->nullable();

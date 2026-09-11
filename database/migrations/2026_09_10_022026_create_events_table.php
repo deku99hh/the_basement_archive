@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->enum('event_status', ['ongoing', 'done'])
                 ->default('ongoing');
-            $table->string('poster_path')->nullable();
+            $table->string('poster_path')->nullable()->default('assets/jujitsu.jpg');
+            $table->string('link')->nullable();
             $table->string('event_name');
             $table->text('event_about_text');
             $table->timestamps();
