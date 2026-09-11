@@ -1,0 +1,122 @@
+
+footer {
+    width: 100%;
+    background-color: #04050d;
+    background-image: linear-gradient(to right, #04050d, #212121);
+    padding: 70px 0;
+    color: aliceblue;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.centerd_links {
+    text-align: center;
+    color: aliceblue;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.centerd_links a{
+    color: #94a1af;
+    text-decoration: none;
+    font-weight: bold;
+}
+.centerd_links a:hover {
+    color: aliceblue;
+}
+
+
+
+.coperite {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #171717;
+    border-top: 1px solid #333;
+
+    padding: 12px;
+    margin-top: 30px;
+}
+
+.coperite a {
+    color: #bbbbbb;
+    text-decoration: none;
+
+}
+
+
+
+
+
+
+
+.lastIcons {
+    margin-top: 80px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.lastIcons a {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+.lastIcons a :hover {
+    filter: brightness(0) invert(1);
+}
+
+.lastIcons a img {
+    text-align: center;
+    width: 25px;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    filter: brightness(0) invert(0.7);
+    margin-left: 15px;
+}
+
+.cornar {
+    width: 700px;
+    position: relative;
+    text-align: center;
+    top: -10px;
+    left: -285px;
+    color: #321311;
+    background-color: #a82c2e;
+    padding: 7px 0;
+    transform: rotate(-45deg);
+}
+
+
+@media (max-width: 670px) {
+    footer{
+        align-items: center;
+    }
+    footer .centerd_links { 
+        /* display: none !important; */
+        width: 65%;
+        flex-wrap: wrap;
+    }
+    footer p {
+        width: 100%;
+    }
+
+    .cornar{
+        left: -125px;
+    }
+}
+

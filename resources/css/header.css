@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+header {
+    background-color: #4288ff;
+    background-image: linear-gradient(to right, #4288ff, rgb(19, 105, 255));
+    height: 3.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.part_of_the_header {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.left_part_of_the_header #logo {
+    height: 32px;
+    width: auto;
+    font-family: "mangaFont", Arial, Helvetica, sans-serif;
+}
+
+.left_part_of_the_header h3 {
+    font-size: 1.15rem;
+    color: #121212;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-family: "mangaFont", Arial, Helvetica, sans-serif;
+}
+
+.write_part_of_the_header a {
+    /* color: #ffffff; */
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0 14px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.write_part_of_the_header a:hover {
+    background-color: rgba(10, 10, 10, 0.15);
+    /* color: #353535; */
+}
+
+@keyframes slide-in {
+  0% { width: 0; opacity: 0; }
+  100%   { width: 35px; opacity: 1; }
+}
+
+.write_part_of_the_header a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background-color: #000000;
+    border-radius: 2px 2px 0 0;
+    animation: slide-in 0.2s;
+}
+
+/* Base states for mobile components (Hidden on Desktop) */
+.navIcon, 
+.navLabel,
+.navBackdrop,
+.mobileNav {
+    display: none;
+}
+
