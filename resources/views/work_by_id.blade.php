@@ -1,7 +1,7 @@
 <x-layout>
 
     <x-slot:heading>
-        {{ $event->event_name }} | The Basement
+        {{ $work->work_name }} | The Basement
     </x-slot:heading>
 
     <x-slot:style>
@@ -165,72 +165,25 @@
                     justify-content: center;
                 }
             }
+
+
+            img {
+                max-width: 50%;
+                /* display: flex; */
+                /* height: auto; */
+                /* display: block; */
+                justify-content: center;
+            }
+
+            main {
+                padding-top: 3.6rem;
+                display: flex;
+                justify-content: center;
+            }
+            
         </style>
     </x-slot:style>
 
-    <section class="events-section">
-        <!-- Event Header Card -->
-        <section class="profile-hero">
-            <div class="profile-card">
-                <div class="profile-header-top">
-                    <x-imageORvideo class="event-poster-img" > {{ $event->poster_path }} </x-imageORvideo>
-                    {{-- <img class="event-poster-img" src="{{ asset($event->poster_path ?? 'assets/jujitsu.jpg') }}" alt="{{ $event->event_name }}"> --}}
-
-                    <div class="profile-meta">
-                        <div class="event-badge-container">
-                            <span class="status-badge {{ $event->event_status === 'ongoing' ? 'status-ongoing' : 'status-done' }}">
-                                {{ $event->event_status }}
-                            </span>
-                        </div>
-
-                        <h1 class="profile-name">{{ $event->event_name }}</h1>
-                        <p class="profile-bio">
-                            {{ $event->event_about_text }}
-                        </p>
-                    </div>
-                </div>
-
-                @if($event->link)
-                    <div class="event-links">
-                        <a href="{{ $event->link }}" target="_blank" rel="noopener" class="external-link-btn">
-                            Visit Event Details &rarr;
-                        </a>
-                    </div>
-                @endif
-            </div>
-        </section>
-
-        <!-- Associated Works Section -->
-        <section class="artist-works-section">
-            <div class="section-heading-wrap">
-                <h2 class="section-title">Submissions</h2>
-                <span class="works-count">{{ $event->works->count() }} works</span>
-            </div>
-
-            <div class="cardSection">
-                @forelse($event->works as $work)
-                    <div class="work">
-                        <div class="work-img">
-                            <a href="/work/{{ $work->id }}">
-                                <x-imageORvideo loading="lazy" :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo>
-                            </a>
-                        </div>
-                        <div class="work-info">
-                            <h2 class="work-title">
-                                <a href="/work/{{ $work->id }}">{{ $work->work_name }}</a>
-                            </h2>
-                            @if($work->artist)
-                                <a href="/artist/{{ $work->artist->id }}" class="work-artist-tag">
-                                    by {{ $work->artist->artist_name }}
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                @empty
-                    <p style="text-align: center; color: #64748b; grid-column: 1 / -1;">No submissions yet for this event.</p>
-                @endforelse
-            </div>
-        </section>
-    </section>
+    <x-imageORvideo :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo>
 
 </x-layout>

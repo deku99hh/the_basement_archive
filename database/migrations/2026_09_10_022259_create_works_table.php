@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('work_name');
             $table->text('work_about_text')->default('');
             $table->string('poster_path');
+            $table->string('type')->default('image');
 
             $table->foreignId('author_id')
                 ->constrained(table: 'artists', column: 'id')

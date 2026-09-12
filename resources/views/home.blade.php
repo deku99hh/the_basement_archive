@@ -7,6 +7,7 @@
     <section class="hero">
         <div class="hero-text">
             <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="hero-logo">
+
             <h1 class="heroP1">The Basement</h1>
             <p class="heroP2">
                 A group of Bachibros who like to create.
@@ -17,7 +18,9 @@
 
         <div class="video-place">
             <a href="{{ filled($events->last()?->link) ? $events->last()->link : url('/event/' . $events->last()?->id) }}" target="_blank" class="latest-media-wrapper">
-                <img src="{{ asset($events->last()->poster_path) }}" alt="Latest Work" class="latest-media-item">
+                {{-- <img src="{{ asset($events->last()->poster_path) }}" alt="Latest Work" class="latest-media-item">                                <x-imageORvideo loading="lazy" :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo> --}}
+                <x-imageORvideo class="latest-media-item" > {{ $events->last()->poster_path }} </x-imageORvideo>
+
                 <span class="latest-badge">Latest Update</span>
             </a>
         </div>
@@ -63,7 +66,8 @@
                 <a href="/event/{{ $event->id }}">
                     <div class="work">
                         <div class="work-img">
-                            <img loading="lazy" src="{{ asset($event->poster_path) }}" alt="Event poster">
+                            <x-imageORvideo loading="lazy"> {{ $event->poster_path }} </x-imageORvideo>
+
                         </div>
                         <div class="work-info">
                             <p> {{ $event->event_status }} </p>
@@ -87,7 +91,7 @@
 
     <!-- Works Section (Pinterest 2 Cols on Mobile) -->
     <section id="works">
-        <h1 class="section-title">our work</h1>
+        <h1 class="section-title">our latest work</h1>
         <div class="cardSection">
 
             @forelse ($works as $work)
@@ -95,7 +99,8 @@
                 <div class="work">
                     <div class="work-img">
                         <a href="/work/{{ $work->id }}">
-                            <img loading="lazy" src="{{ asset($work->poster_path) }}" alt="Work poster">
+                            <x-imageORvideo loading="lazy" :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo>
+
                         </a>
                     </div>
                     <div class="work-info">
@@ -115,7 +120,7 @@
 
         </div>
         <div class="center-btn">
-            <a class="seeMore" href="/works">see more of our work</a>
+            {{-- <a class="seeMore" href="/works">see more of our work</a> --}}
         </div>
     </section>
 

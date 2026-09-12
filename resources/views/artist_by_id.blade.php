@@ -283,7 +283,8 @@
             <section class="profile-hero">
                 <div class="profile-card">
                     <div class="profile-header-top">
-                        <img class="profile-avatar" src="../{{ $artist->avatar }}" alt="Kaustav Banerjee">
+                        {{-- <img class="profile-avatar" src="{{ $artist->avatar=='assets/teto.png' ? ('../' . $artist->avatar) : $artist->avatar }}" alt="Kaustav Banerjee"> --}}
+                        <x-imageORvideo class="profile-avatar"> {{ $artist->avatar=='assets/teto.png' ? ('../' . $artist->avatar) : $artist->avatar }} </x-imageORvideo>
 
                         <div class="profile-meta">
                             <h1 class="profile-name">{{ $artist->artist_name }}</h1>
@@ -356,7 +357,7 @@
                         <div class="work">
                             <div class="work-img">
                                 <a href="/work/{{ $work->id }}">
-                                    <img loading="lazy" src="{{ asset($work->poster_path) }}" alt="Artwork {{ $index + 1 }}">
+                                    <x-imageORvideo :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo>
                                 </a>
                             </div>
                             <div class="work-info">

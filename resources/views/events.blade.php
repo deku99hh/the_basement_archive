@@ -384,7 +384,7 @@
                             <div class="preview-thumbs">
                                 @foreach($event->works()->latest()->take(3)->get() as $index => $work)
                                     <a href="/work/{{ $work->id }}" title="{{ $work->title }}">
-                                        <img src="{{ asset($work->poster_path) }}" alt="Preview {{ $index + 1 }}">
+                                        <x-imageORvideo alt="Preview {{ $index + 1 }}" loading="lazy" :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo>
                                     </a>
                                 @endforeach
                             </div>
