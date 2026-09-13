@@ -1,7 +1,7 @@
 <x-layout>
 
     <x-slot:heading>
-        login | The Basement
+        signup | The Basement
     </x-slot:heading>
 
     <x-slot:style>
@@ -106,11 +106,22 @@
         <!-- Work Form -->
         <div class="form-box">
 
-            <h2 class="form-title">login</h2>
+            <h2 class="form-title">signup</h2>
+            <p style="color: gray;">are u one of us??</p>
 
-            <form action="/login" method="POST">
+            <form action="/signup" method="POST">
                 @csrf
 
+
+                <div class="form-group">
+                    <label>name</label>
+                    <input type="text" name="artist_name" placeholder="your actual name plz :)" required>
+                </div>
+
+                <div class="form-group">
+                    <label>email</label>
+                    <input type="email" name="email" placeholder="some.one@something.com" required>
+                </div>
 
                 <div class="form-group">
                     <label>username</label>
@@ -118,15 +129,57 @@
                 </div>
 
                 <div class="form-group">
+                    <label>about</label>
+                    <input type="text" name="artist_about_text" placeholder="any facts about u" required>
+                </div>
+
+                <div class="form-group">
+                    <label>avatar</label>
+                    <input type="link" name="avatar" placeholder="your avatar link (imgur plz)" required>
+                </div>
+
+                <br>
+                <h4>social</h4>
+                <br>
+
+                <div class="form-group">
+                    <label>instagram</label>
+                    <input type="link" name="instagram" placeholder="@person">
+                </div>
+                <div class="form-group">
+                    <label>twitter</label>
+                    <input type="link" name="twitter" placeholder="@person">
+                </div>
+                <div class="form-group">
+                    <label>youtube</label>
+                    <input type="link" name="youtube" placeholder="@person">
+                </div>
+                <div class="form-group">
+                    <label>buy me a coffee</label>
+                    <input type="link" name="buy_me_a_coffee" placeholder="@broke_person">
+                </div>
+
+                <br>
+                <p style="color: gray;">almost there</p>
+
+
+                <div class="form-group">
+                    <label>password</label>
+                    <input type="password" name="password" placeholder="password" required>
+                </div>
+                <div class="form-group">
                     <label>password</label>
                     <input type="password" name="password" placeholder="password" required>
                 </div>
 
+
+                {{-- $table->enum('role', ['admin', 'artist']) --}}
+
                 <button type="submit" class="btn-submit">login</button>
 
 
-                @error('username')
-                    <div class="label" style="color: red; margin-top: 10px;">
+                @error('message')
+                    <div class="label">
                         <span class="label-text-alt text-error">{{ $message }}</span>
                     </div>
                 @enderror

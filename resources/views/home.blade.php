@@ -17,11 +17,11 @@
 
 
         <div class="video-place">
-            <a href="{{ filled($events->last()?->link) ? $events->last()->link : url('/event/' . $events->last()?->id) }}"
+            <a href="{{ filled($events->first()?->link) ? $events->first()->link : url('/event/' . $events->first()?->id) }}"
                 target="_blank" class="latest-media-wrapper">
                 {{-- <img src="{{ asset($events->last()->poster_path) }}" alt="Latest Work" class="latest-media-item">
                 <x-imageORvideo loading="lazy" :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo> --}}
-                <x-imageORvideo class="latest-media-item"> {{ $events->last()->poster_path }} </x-imageORvideo>
+                <x-imageORvideo class="latest-media-item"> {{ $events->first()->poster_path }} </x-imageORvideo>
 
                 <span class="latest-badge">Latest Update</span>
             </a>

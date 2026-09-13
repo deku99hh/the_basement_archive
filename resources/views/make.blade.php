@@ -93,47 +93,60 @@
             }
         </style>
     </x-slot:style>
+    <h2>{{ $usr->artist_name }}</h2>
+    <h2>{{ $usr->username }}</h2>
 
     <div class="make-container">
-        <!-- Work Form -->
         <div class="form-box">
             <h2 class="form-title">+ New Work</h2>
-            <form action="/works" method="POST" enctype="multipart/form-data" class="simple-form">
+            <form action="/addwork" method="POST">
                 @csrf
 
                 <div class="form-group">
                     <label> <span style="color: red;">*</span> Work Name</label>
-                    <input type="text" name="work_name" placeholder="e.g. Enten Drawing" required>
+                    <input type="text" name="work_name" value="{{ old('work_name') }}" placeholder="e.g. Enten Drawing"
+                        required>
+                    @error('work_name')
+                        <span style="color: red; display:block; margin-top: 5px;">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea name="work_about_text" rows="3" placeholder="Short description..."></textarea>
+                    <label><span style="color: red;">*</span> Description</label>
+                    <textarea name="work_about_text" rows="3" placeholder="Short description..."
+                        required>{{ old('work_about_text') }}</textarea>
+                    @error('work_about_text')
+                        <span style="color: red; display:block; margin-top: 5px;">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label> <span style="color: red;">*</span> art</label>
-                    <input type="text" name="poster_path" placeholder="link...." required>
+                    <input type="text" name="poster_path" placeholder="link...."required>
+                    @error('poster_path')
+                        <span style="color: red; display:block; margin-top: 5px;">{{ $message }}</span>
+                    @enderror
                 </div>
 
-                <div style="color: #334155;display: flex;align-items: center;gap: 23vw;justify-content: center;" class="">
+                <div style="color: #334155; display: flex; align-items: center; gap: 23vw; justify-content: center;">
                     <div>
                         <label>image</label>
-                        <input type="checkbox" name="image">
+                        <input type="checkbox" name="image" value="1" {{ old('image') ? 'checked' : '' }}>
                     </div>
                     <div>
                         <label>video</label>
-                        <input type="checkbox" name="video">
+                        <input type="checkbox" name="video" value="1" {{ old('video') ? 'checked' : '' }}>
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <label>Event (Optional)</label>
                     <select name="event_id">
                         <option value="">None</option>
                         @foreach($events as $event)
-                            <option value="{{ $event->id }}">{{ $event->event_name }}</option>
+                            <option value="{{ $event->id }}" {{ old('event_id') == $event->id ? 'selected' : '' }}>
+                                {{ $event->event_name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -142,43 +155,47 @@
             </form>
         </div>
 
-        <!-- Event Form -->
-        <div class="form-box">
-            <h2 class="form-title">+ New Event</h2>
-            <form action="/events" method="POST" enctype="multipart/form-data" class="simple-form">
-                @csrf
 
-                <div class="form-group">
-                    <label>Event Name</label>
-                    <input type="text" name="event_name" placeholder="e.g. Manga Week" required>
-                </div>
+        @if ($usr->role == 'admin')
 
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea name="event_about_text" rows="3" placeholder="Event details..." required></textarea>
-                </div>
+            <div class="form-box">
+                <h2 class="form-title">+ New Event</h2>
+                <form action="/addevent" method="POST" enctype="multipart/form-data" class="simple-form">
+                    @csrf
 
-                <div class="form-group">
-                    <label>Poster</label>
-                    <input type="text" name="poster_path" placeholder="link...." required>
-                </div>
+                    <div class="form-group">
+                        <label>Event Name</label>
+                        <input type="text" name="event_name" placeholder="e.g. Manga Week" required>
+                    </div>
 
-                <div class="form-group">
-                    <label>External Link (Optional)</label>
-                    <input type="url" name="link" placeholder="https://...">
-                </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="event_about_text" rows="3" placeholder="Event details..." required></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label>Status</label>
-                    <select name="event_status">
-                        <option value="ongoing">Ongoing</option>
-                        <option value="done">Done</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label>Poster</label>
+                        <input type="text" name="poster_path" placeholder="link...." required>
+                    </div>
 
-                <button type="submit" class="btn-submit">Create Event</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label>External Link (Optional)</label>
+                        <input type="url" name="link" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="event_status">
+                            <option value="ongoing">Ongoing</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Create Event</button>
+                </form>
+            </div>
+
+        @endif
     </div>
 
 </x-layout>

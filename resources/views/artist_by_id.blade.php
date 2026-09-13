@@ -363,7 +363,7 @@
                             <div class="work-info">
                                 <h2 class="work-title">
                                     <a href="/work/{{ $work->id }}">{{ $work->work_name }}</a>
-                                    <p class="work-desc">{{ $work->work_name }}</p>
+                                    <p class="work-desc">{{ $work->work_about_text }}</p>
                                 </h2>
                             </div>
                         </div>

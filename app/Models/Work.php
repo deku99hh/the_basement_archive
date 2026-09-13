@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Work extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
     public $timestamps = true;
     
     public function artist(): BelongsTo
