@@ -74,9 +74,9 @@
         <div class="centerd_links">
             <a href="/">Home</a>
             <a href="/events">Events</a>
-            <a href="/works">Works</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">rick</a>
             <a href="/artists">Artists</a>
-            <a href="/guestbook">Guestbook</a>
+            {{-- <a href="/guestbook">Guestbook</a> --}}
         </div>
         <div class="lastIcons">
             <a href="https://x.com/BachiBasement" target="_blank">
@@ -99,3 +99,24 @@
 </body>
 
 </html>
+
+
+@if (random_int(1, 100) == 3)
+    <img id="sojo"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-dQ0xJusMmEYWZvbV_RbMRmEJZPT7VmzMsnPWFR9WTA&s=10" alt=""
+        style="
+        display: block;
+        position: fixed;
+        top: -1vw;
+        z-index: 999999999999999;
+        right: -3vw;
+        width: 100%;
+            ">
+    <script>
+        setTimeout(() => {
+            document.getElementById('sojo').remove();
+        }, 200)
+
+        console.log("")
+    </script>
+@endif

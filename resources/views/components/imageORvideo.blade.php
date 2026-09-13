@@ -6,3 +6,4 @@
 @else
     <img {{ $attributes }} src="{{ asset($slot) }}" alt="Poster">
 @endif
+

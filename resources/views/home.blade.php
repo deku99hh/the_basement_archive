@@ -204,9 +204,22 @@
 
     <section class="hero">
         <div class="hero-text">
-            <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="hero-logo">
 
-            <h1 class="heroP1">The Basement</h1>
+            @if (random_int(1, 10000) == 3)
+                <img class="hero-logo"
+                    src="https://images.vexels.com/media/users/3/268013/isolated/preview/b0c26efb7ece93aede8c0d3c510770a2-realistic-blood-splatter-stain.png"
+                    alt="logo" id="logo">
+            @else
+                <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="hero-logo">
+            @endif
+
+            @if (random_int(1, 10000) ==3)
+                <h1 class="heroP1" style="color: #991b1b;">The HELL</h1>
+            @else
+                <h1 class="heroP1">The Basement</h1>
+            @endif
+
+            {{-- <h1 class="heroP1">The Basement</h1> --}}
             <p class="heroP2">
                 A group of Bachibros who like to create.
                 <span class="sub-caption">welcome to the archive</span>
