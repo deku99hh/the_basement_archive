@@ -6,6 +6,22 @@
 
     <x-slot:style>
         <style>
+            .deleteworkbutt {
+
+                background: #4288ff;
+                background-image: linear-gradient(135deg, #4288ff, #1369ff);
+                color: #ffffff;
+                border: none;
+                border-radius: 8px;
+                padding: 10px;
+                font-weight: 700;
+                font-size: 0.95rem;
+                cursor: pointer;
+                margin-top: 6px;
+                transition: opacity 0.2s;
+
+            }
+
             .section-title {
                 text-align: center;
                 font-size: 2rem;
@@ -71,6 +87,8 @@
             .profile-action {
                 display: flex;
                 align-items: center;
+                gap: 8px;
+                flex-direction: column;
             }
 
             .add-work-btn {
@@ -86,6 +104,25 @@
                 font-size: 0.95rem;
                 box-shadow: 0 4px 12px rgba(19, 105, 255, 0.3);
                 transition: transform 0.2s, box-shadow 0.2s;
+            }
+
+            .logout-btn {
+                background-color: #dc0000;
+                background-image: linear-gradient(135deg, #ff4242, #8a0000);
+                color: #ffffff;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 18px;
+                border-radius: 12px;
+                font-weight: bold;
+                font-size: 0.95rem;
+                box-shadow: 0 4px 12px rgb(255 19 19 / 30%);
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .logout-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgb(255 19 19 / 40%);
             }
 
             .add-work-btn:hover {
@@ -283,8 +320,12 @@
             <section class="profile-hero">
                 <div class="profile-card">
                     <div class="profile-header-top">
-                        {{-- <img class="profile-avatar" src="{{ $artist->avatar=='assets/teto.png' ? ('../' . $artist->avatar) : $artist->avatar }}" alt="Kaustav Banerjee"> --}}
-                        <x-imageORvideo class="profile-avatar"> {{ $artist->avatar=='assets/teto.png' ? ('../' . $artist->avatar) : $artist->avatar }} </x-imageORvideo>
+                        {{-- <img class="profile-avatar"
+                            src="{{ $artist->avatar=='assets/teto.png' ? ('../' . $artist->avatar) : $artist->avatar }}"
+                            alt="Kaustav Banerjee"> --}}
+                        <x-imageORvideo class="profile-avatar">
+                            {{ $artist->avatar == 'assets/teto.png' ? ('../' . $artist->avatar) : $artist->avatar }}
+                        </x-imageORvideo>
 
                         <div class="profile-meta">
                             <h1 class="profile-name">{{ $artist->artist_name }}</h1>
@@ -293,12 +334,20 @@
                             </p>
                         </div>
 
-                        {{-- <div class="profile-action">
-                            <a href="" class="add-work-btn" title="Add New Work">
-                                <span class="plus-icon">+</span>
-                                <span class="btn-text">Add Work</span>
-                            </a>
-                        </div> --}}
+                        @if ($is_user)
+                            <div class="profile-action">
+                                <a href="/make" class="add-work-btn" title="Add New Work">
+                                    <span class="plus-icon">+</span>
+                                    <span class="btn-text">Add Work</span>
+                                </a>
+
+                                <a href="/logout" class="logout-btn" title="Add New Work">
+                                    <span class="btn-text">logout</span>
+                                </a>
+
+                            </div>
+                        @endif
+
                     </div>
 
                     <!-- Social & Support Links -->
@@ -350,9 +399,9 @@
                 <div class="cardSection">
 
                     @foreach($artist->works()->get() as $index => $work)
-                                    {{-- <a href="/work/{{ $work->id }}" title="{{ $work->title }}">
-                                        <img src="{{ asset($work->poster_path) }}" alt="Preview {{ $index + 1 }}">
-                                    </a> --}}
+                        {{-- <a href="/work/{{ $work->id }}" title="{{ $work->title }}">
+                            <img src="{{ asset($work->poster_path) }}" alt="Preview {{ $index + 1 }}">
+                        </a> --}}
 
                         <div class="work">
                             <div class="work-img">
@@ -365,6 +414,16 @@
                                     <a href="/work/{{ $work->id }}">{{ $work->work_name }}</a>
                                     <p class="work-desc">{{ $work->work_about_text }}</p>
                                 </h2>
+                                <div class="forms">
+                                    @if ($is_user)
+                                        <form action="/deletework/{{ $work->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="deleteworkbutt" type="submit">delete work</button>
+                                        </form>
+
+                                    @endif
+                                </div>
                             </div>
                         </div>
 

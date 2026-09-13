@@ -42,7 +42,9 @@ class WorkController extends Controller
         $usr = auth()->user();
         $work = Work::findOrFail($id);
 
-        if ($usr->id === $work->artist_id) {
+        // dd($usr->id, $work->author_id); 
+
+        if ($usr->id === $work->author_id) {
 
             $work->delete();
             return redirect('/')->withSuccess('Work deleted successfully.');

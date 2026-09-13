@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :user="auth()->user()">
 
     <x-slot:heading>
         Artists | The Basement
@@ -75,10 +75,13 @@
             .eventsGrid {
                 max-width: 1050px;
                 margin: 0 auto;
-                display: grid;
+                /* display: grid; */
                 grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
                 gap: 24px;
                 justify-items: center;
+                column-width: 15rem;
+                column-gap: normal;
+
             }
 
             .event-card {
@@ -354,17 +357,16 @@
             </div>
         </div>
     </section> --}}
-    
+
     <section class="events-section">
         <div class="eventsGrid">
-    
+
             @forelse ($artists as $artist)
 
-                <div class="work">
+                <div class="work" style="margin: 34px 0; break-inside: avoid;">
                     <a href="/artist/{{ $artist->id }}">
                         <div class="work-img">
-                            <img class="personalImg" loading="lazy" src="{{ $artist->avatar }}"
-                                alt="Artist Avatar">
+                            <img class="personalImg" loading="lazy" src="{{ $artist->avatar }}" alt="Artist Avatar">
                         </div>
                         <div class="work-info">
                             <h2 class="work-title">{{ $artist->artist_name }}</h2>
@@ -376,12 +378,8 @@
             @empty
                 <h1>no artists, YET!!</h1>
             @endforelse
-    
+
         </div>
     </section>
 
 </x-layout>
-
-
-
-

@@ -12,16 +12,19 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::with('works')->latest()->get();
+        $usr = auth()->user();
 
         // var_dump(compact('events'));
-        return view('events', compact('events'));
+        return view('events', compact('events', 'usr'));
     }
 
     public function event($events_id)
     {
         $event = Event::with('works')->findOrFail($events_id);
+        $usr = auth()->user();
 
-        return view('event_by_id', compact('event'));
+
+        return view('event_by_id', compact('event', 'usr'));
     }
     
 

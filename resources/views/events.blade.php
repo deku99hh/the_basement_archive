@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :user="auth()->user()">
 
     <x-slot:heading>
         Events | The Basement

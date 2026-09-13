@@ -1,3 +1,5 @@
+@props(['user' => null])
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +21,12 @@
         </div>
 
         <nav class="write_part_of_the_header part_of_the_header pc">
+            @if ( $user )
+                <a href="/artist/{{ $user->id }}"> 
+                    <img src="https://www.svgrepo.com/show/529291/user-rounded.svg" style="height: 34px; padding-right: 0px;">
+                    {{ $user->username }}
+                </a>
+            @endif
             <a href="/">Home</a>
             <a href="/events">Events</a>
             {{-- <a href="/works">Works</a> --}}

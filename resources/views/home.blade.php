@@ -1,8 +1,21 @@
-<x-layout>
+<x-layout :user="auth()->user()">
 
     <x-slot:heading>
         The Basement
     </x-slot:heading>
+
+    @if(session('success'))
+        <div style="color: green; background: #e6ffe6; padding: 10px;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div style="color: red; background: #ffe6e6; padding: 10px;">
+            {{ session('error') }}
+        </div>
+    @endif
+
 
     <section class="hero">
         <div class="hero-text">

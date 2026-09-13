@@ -15,7 +15,9 @@ class HomeController extends Controller
         $works = Work::with('artist')->latest()->take(8)->get();
         $artists = Artist::latest()->take(6)->get();
 
+        $usr = auth()->user();
+
         // dd(compact('events', 'works', 'artists'));
-        return view('home', compact('events', 'works', 'artists'));
+        return view('home', compact('events', 'works', 'artists', 'usr'));
     }
 }
