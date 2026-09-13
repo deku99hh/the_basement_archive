@@ -415,7 +415,7 @@
                                     <p class="work-desc">{{ $work->work_about_text }}</p>
                                 </h2>
                                 <div class="forms">
-                                    @if ($is_user)
+                                    @if ($is_user || auth()->user()->role == 'admin')
                                         <form action="/deletework/{{ $work->id }}" method="post">
                                             @csrf
                                             @method('DELETE')

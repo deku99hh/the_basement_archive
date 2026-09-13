@@ -165,6 +165,28 @@
                     justify-content: center;
                 }
             }
+
+            .add-work-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(19, 105, 255, 0.4);
+            }
+
+            .add-work-btn {
+
+                background-color: #4288ff;
+                background-image: linear-gradient(135deg, #4288ff, #1369ff);
+                color: #ffffff;
+                display: inline-flex;
+                border: 0;
+                align-items: center;
+                gap: 8px;
+                padding: 14px 18px;
+                border-radius: 12px;
+                font-weight: bold;
+                font-size: 0.95rem;
+                box-shadow: 0 4px 12px rgba(19, 105, 255, 0.3);
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
         </style>
     </x-slot:style>
 
@@ -173,12 +195,14 @@
         <section class="profile-hero">
             <div class="profile-card">
                 <div class="profile-header-top">
-                    <x-imageORvideo class="event-poster-img" > {{ $event->poster_path }} </x-imageORvideo>
-                    {{-- <img class="event-poster-img" src="{{ asset($event->poster_path ?? 'assets/jujitsu.jpg') }}" alt="{{ $event->event_name }}"> --}}
+                    <x-imageORvideo class="event-poster-img"> {{ $event->poster_path }} </x-imageORvideo>
+                    {{-- <img class="event-poster-img" src="{{ asset($event->poster_path ?? 'assets/jujitsu.jpg') }}"
+                        alt="{{ $event->event_name }}"> --}}
 
                     <div class="profile-meta">
                         <div class="event-badge-container">
-                            <span class="status-badge {{ $event->event_status === 'ongoing' ? 'status-ongoing' : 'status-done' }}">
+                            <span
+                                class="status-badge {{ $event->event_status === 'ongoing' ? 'status-ongoing' : 'status-done' }}">
                                 {{ $event->event_status }}
                             </span>
                         </div>
@@ -188,6 +212,13 @@
                             {{ $event->event_about_text }}
                         </p>
                     </div>
+                    @if ($usr->role == 'admin')
+                        <form action="/changestatus/{{ $event->id }}" method="post">
+                            @csrf
+                            <button type="submit" class="add-work-btn" style="">change status</button>
+
+                        </form>
+                    @endif
                 </div>
 
                 @if($event->link)
@@ -212,7 +243,8 @@
                     <div class="work">
                         <div class="work-img">
                             <a href="/work/{{ $work->id }}">
-                                <x-imageORvideo loading="lazy" :type="$work->type"> {{ $work->poster_path }} </x-imageORvideo>
+                                <x-imageORvideo loading="lazy" :type="$work->type"> {{ $work->poster_path }}
+                                </x-imageORvideo>
                             </a>
                         </div>
                         <div class="work-info">
@@ -227,7 +259,8 @@
                         </div>
                     </div>
                 @empty
-                    <p style="text-align: center; color: #64748b; grid-column: 1 / -1;">No submissions yet for this event.</p>
+                    <p style="text-align: center; color: #64748b; grid-column: 1 / -1;">No submissions yet for this event.
+                    </p>
                 @endforelse
             </div>
         </section>

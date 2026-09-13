@@ -44,3 +44,5 @@ Route::post('/addwork', [WorkController::class, 'addwork'])->middleware('auth');
 Route::post('/addevent', [EventsController::class, 'addevent'])->middleware('auth');
 
 Route::delete('/deletework/{id}', [WorkController::class, 'deletework'])->middleware('auth');
+
+Route::post('/changestatus/{id}', [EventsController::class, 'changestatus'])->middleware('auth');

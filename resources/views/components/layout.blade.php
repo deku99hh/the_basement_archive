@@ -21,9 +21,10 @@
         </div>
 
         <nav class="write_part_of_the_header part_of_the_header pc">
-            @if ( $user )
-                <a href="/artist/{{ $user->id }}"> 
-                    <img src="https://www.svgrepo.com/show/529291/user-rounded.svg" style="height: 34px; padding-right: 0px;">
+            @if ($user)
+                <a href="/artist/{{ $user->id }}">
+                    <img src="https://www.svgrepo.com/show/529291/user-rounded.svg"
+                        style="height: 34px; padding-right: 0px;">
                     {{ $user->username }}
                 </a>
             @endif
@@ -46,9 +47,19 @@
         <div class="mobileNav">
             <div class="linkBlockA"><a href="/">Home</a></div>
             <div class="linkBlockA"><a href="/events">Events</a></div>
-            <div class="linkBlockA"><a href="/works">Works</a></div>
+            {{-- <div class="linkBlockA"><a href="/works">Works</a></div> --}}
             <div class="linkBlockA"><a href="/artists">Artists</a></div>
-            <div class="linkBlockA"><a href="/guestbook">Guestbook</a></div>
+            {{-- <div class="linkBlockA"><a href="/guestbook">Guestbook</a></div> --}}
+            @if ($user)
+                <div class="linkBlockA">
+                    <a href="/artist/{{ $user->id }}">
+                        <img src="https://www.svgrepo.com/show/529291/user-rounded.svg"
+                            style="height: 34px;padding-right: 0px;filter: brightness(10.5);">
+                        {{ $user->username }}
+                    </a>
+                </div>
+            @endif
+
         </div>
     </header>
 

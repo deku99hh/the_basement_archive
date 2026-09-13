@@ -47,4 +47,16 @@ class EventsController extends Controller
         return redirect('/')->withSuccess('success');
 
     }
+
+    public function changestatus($id)
+    {
+        $usr = auth()->user();
+
+        if ( $usr->role == 'admin' ) {
+            Event::findOrFail($id)->togglestatus();
+            return redirect('/event/' . $id)->withSuccess('success');
+        }
+        return redirect('/event/' . $id)->withErrors('not athorized');
+
+    }
 }

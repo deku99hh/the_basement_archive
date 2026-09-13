@@ -4,18 +4,203 @@
         The Basement
     </x-slot:heading>
 
+    <x-slot:style>
+        <style>
+            /* ==========================================================================
+   Alerts & Notifications
+   ========================================================================== */
+            .alert {
+                width: 90%;
+                max-width: 1100px;
+                margin: 1.5rem auto 0;
+                padding: 12px 20px;
+                border-radius: 10px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+
+            .alert-success {
+                background-color: #ecfdf5;
+                color: #065f46;
+                border: 1px solid #a7f3d0;
+            }
+
+            .alert-danger {
+                background-color: #fef2f2;
+                color: #991b1b;
+                border: 1px solid #fecaca;
+            }
+
+            /* ==========================================================================
+   Grid & Card Uniformity Enhancements
+   ========================================================================== */
+            .cardSection {
+                padding: 0 6%;
+                display: grid;
+                /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+                gap: 24px;
+                align-items: stretch;
+                /* توحيد ارتفاع الكروت في نفس الصف */
+            }
+
+            /* الروابط التي تغلف الكارت بالكامل */
+            .cardSection>a {
+                display: flex;
+                width: 100%;
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .work {
+                background-color: #ffffff;
+                border-radius: 15px;
+                padding: 16px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+                border: 1px solid #edf2f7;
+                transition: transform 0.25s ease, box-shadow 0.25s ease;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .work:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            /* ضبط حاوية الميديا والـ Aspect Ratio */
+            .work .work-img {
+                width: 100%;
+                aspect-ratio: 4 / 5;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 12px;
+                background-color: #e2e8f0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .work .work-img a {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            /* دعم الصور أو الفيديوهات داخل الكمبوننت */
+            .work .work-img img,
+            .work .work-img video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            /* بطاقات الفنانين (صورة دائرية مقاس موحد) */
+            .personalImg {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            /* هيكلة النصوص والحد من استطالتها */
+            .work-info {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                text-align: left;
+            }
+
+            .work-title {
+                font-size: 1.15rem;
+                color: #0f172a;
+                margin-bottom: 6px;
+                font-weight: 700;
+            }
+
+            /* قص النص الطويل بعد 3 أسطر لمنع تشوه الكارت */
+            .work-desc {
+                font-size: 0.88rem;
+                color: #64748b;
+                line-height: 1.45;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                margin-bottom: auto;
+            }
+
+            .artist-credit-link {
+                color: #0e5feb;
+                font-weight: 700;
+                display: inline-block;
+                margin-top: 6px;
+            }
+
+            .artist-credit-link:hover {
+                text-decoration: underline;
+            }
+
+            /* Empty State Handling */
+            .empty-state {
+                grid-column: 1 / -1;
+                text-align: center;
+                padding: 3rem 1rem;
+                color: #94a3b8;
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+
+            /* ==========================================================================
+   Mobile 2-Columns Refinements (Max Width: 768px)
+   ========================================================================== */
+            @media (max-width: 768px) {
+                .cardSection {
+                    /* grid-template-columns: repeat(2, 1fr); */
+                    gap: 12px;
+                    padding: 0 3%;
+                }
+
+                .work {
+                    padding: 10px;
+                    border-radius: 12px;
+                }
+
+                .work-title {
+                    font-size: 0.95rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .work-desc {
+                    -webkit-line-clamp: 2;
+                    /* سطرين فقط على الشاشات الصغيرة */
+                    font-size: 0.78rem;
+                }
+
+                .artist-credit-link {
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    </x-slot:style>
+
     @if(session('success'))
-        <div style="color: green; background: #e6ffe6; padding: 10px;">
-            {{ session('success') }}
+        <div class="alert alert-success">
+            <span>{{ session('success') }}</span>
         </div>
     @endif
 
     @if(session('error'))
-        <div style="color: red; background: #ffe6e6; padding: 10px;">
-            {{ session('error') }}
+        <div class="alert alert-danger">
+            <span>{{ session('error') }}</span>
         </div>
     @endif
-
 
     <section class="hero">
         <div class="hero-text">

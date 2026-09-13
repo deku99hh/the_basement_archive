@@ -44,7 +44,7 @@ class WorkController extends Controller
 
         // dd($usr->id, $work->author_id); 
 
-        if ($usr->id === $work->author_id) {
+        if ($usr->id === $work->author_id || $usr->role == 'admin') {
 
             $work->delete();
             return redirect('/')->withSuccess('Work deleted successfully.');
