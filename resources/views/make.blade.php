@@ -113,8 +113,20 @@
 
                 <div class="form-group">
                     <label> <span style="color: red;">*</span> art</label>
-                    <input type="text" name="work_name" placeholder="link...." required>
+                    <input type="text" name="poster_path" placeholder="link...." required>
                 </div>
+
+                <div style="color: #334155;display: flex;align-items: center;gap: 23vw;justify-content: center;" class="">
+                    <div>
+                        <label>image</label>
+                        <input type="checkbox" name="image">
+                    </div>
+                    <div>
+                        <label>video</label>
+                        <input type="checkbox" name="video">
+                    </div>
+                </div>
+
 
                 <div class="form-group">
                     <label>Event (Optional)</label>
@@ -147,8 +159,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Poster (Optional)</label>
-                    <input type="file" name="poster" accept="image/*">
+                    <label>Poster</label>
+                    <input type="text" name="poster_path" placeholder="link...." required>
                 </div>
 
                 <div class="form-group">
